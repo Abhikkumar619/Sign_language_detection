@@ -18,4 +18,4 @@ logging.basicConfig(level=logging.INFO, format=format_str,
                     handlers=[logging.FileHandler(file_log_path),
                               logging.StreamHandler(sys.stdout)
                               ])
-logger=logging.getLogger("sign_language")
+log=logging.getLogger("sign_language")

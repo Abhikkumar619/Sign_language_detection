@@ -131,3 +131,4 @@ dmypy.json
 artifacts/*
 Sign_language_data.zip
 LOG/
+sign_ev/
