@@ -7,4 +7,6 @@ class DataIngestionArtifacts:
     
     
     
-    
+@dataclass(frozen=True)
+class DataValidationArtifacts: 
+    validation_status: bool
