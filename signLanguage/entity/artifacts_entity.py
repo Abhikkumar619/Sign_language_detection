@@ -10,3 +10,8 @@ class DataIngestionArtifacts:
 @dataclass(frozen=True)
 class DataValidationArtifacts: 
     validation_status: bool
+
+@dataclass(frozen=True)
+class ModelTrainerArtifacts: 
+    train_model_file_path: str
+    

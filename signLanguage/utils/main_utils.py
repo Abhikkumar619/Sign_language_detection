@@ -1,14 +1,16 @@
 import yaml
 from pathlib import Path
-from  logger import logger
+from  signLanguage.logger import log
 import os
 import base64
+# from box import ConfigBox
 
 def read_yaml_file(file_path: Path): 
     try: 
         with open(file_path, 'r') as yaml_file:
             content=yaml.safe_load(yaml_file)
-            logger.info(f"Yaml file load sucessful: {file_path}")
+            # log.info(f"Yaml file load sucessful: {content}")
+            return content
     except Exception as e: 
         raise e
     
@@ -23,7 +25,7 @@ def write_yaml_file(file_path: Path, content: object, replace: bool)-> None:
         
         with open(file_path, "w") as f: 
             yaml.dump(content, file_path)
-            logger.info(f"Sucessful write yaml file")
+            log.info(f"Sucessful write yaml file")
         
     except Exception as e: 
         raise e

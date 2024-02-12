@@ -2,18 +2,23 @@ import sys, os
 from signLanguage.logger import log
 from signLanguage.components.data_ingestion import DataIngestion
 from signLanguage.entity.config_entity import (DataIngestionConfig, 
-                                               DataValidationConfig)
+                                               DataValidationConfig, 
+                                               ModelTainerConfig)
 
 from signLanguage.entity.artifacts_entity import (DataIngestionArtifacts,
-                                                  DataValidationArtifacts)
+                                                  DataValidationArtifacts,
+                                                  ModelTrainerArtifacts)
 
 from signLanguage.components.data_validation import DataValidation
+from signLanguage.components.model_trainer import ModelTrainer
+
 
 
 class TrainPipeline: 
     def __init__(self): 
         self. data_ingestion_config= DataIngestionConfig()
         self. data_validation_config=DataValidationConfig()
+        self. model_trainer_config=ModelTainerConfig()
         
     def start_data_ingstion(self)->DataIngestionArtifacts:
         try: 
@@ -48,6 +53,12 @@ class TrainPipeline:
             
         except Exception as e: 
             raise e
+        
+    def start_model_trainer(self):
+        model_train=ModelTrainer(model_trainer_config=self.model_trainer_config) 
+        model_train.initate_data_model_trainer()
+        
+        
          
          
     def run_pipeline(self)-> None: 
@@ -56,6 +67,8 @@ class TrainPipeline:
             log.info(f"Data Ingestion artifacts: {data_ingestion_artifacts}")
             
             data_validation_artifacts=self.start_data_validation(data_ingestion_artifacts)
+            
+            self.start_model_trainer()
             
         except Exception as e: 
             raise e      

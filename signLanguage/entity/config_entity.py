@@ -31,7 +31,14 @@ class DataValidationConfig:
     
     resuired_file_list=DATA_VALIDATION_ALL_REQUIRED_FILES
     
+@dataclass(frozen=True)
+class ModelTainerConfig: 
+    model_trainer_dir=os.path.join(traing_pipeline_config.artifacts_dir, 
+                                   MODEL_TRAINER_DIR_NAME)
     
+    weight_name=MODEL_TRAINER_PERTRAINED_WEIGHT_NAME
+    no_epoch=MODEL_TRAINER_NO_EPOCHS
+    batch_size=MODEL_TRAINER_BATCH_SIZE
     
     
 
