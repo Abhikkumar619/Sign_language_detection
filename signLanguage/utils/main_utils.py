@@ -35,7 +35,8 @@ def write_yaml_file(file_path: Path, content: object, replace: bool)-> None:
 
 def DecodeImage(img, file_name): 
     imgdata=base64.b64decode(img)
-    with open(file_name, 'wb') as f: 
+    # log.info(f"Image Data:  {imgdata}")
+    with open("./data/"+file_name, 'wb') as f: 
         f.write(imgdata)
         f.close()
         
