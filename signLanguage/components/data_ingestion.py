@@ -58,7 +58,8 @@ class DataIngestion:
     def initiate_data_ingestion(self)-> DataIngestionArtifacts: 
         log.info(f"Initiate Data InGestion from DataIngestion Class\n\n")
         try: 
-            zip_file_path=self.download_url()
+            # zip_file_path=self.download_url()
+            zip_file_path="artifacts\data_ingestion\data.zip"
             extract_file_path=self.Extract_zip_file(zip_file_path)
             
             data_ingestion_artifact=DataIngestionArtifacts(data_zip_file_path=zip_file_path,

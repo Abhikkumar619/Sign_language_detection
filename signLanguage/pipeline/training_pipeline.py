@@ -56,7 +56,10 @@ class TrainPipeline:
         
     def start_model_trainer(self):
         model_train=ModelTrainer(model_trainer_config=self.model_trainer_config) 
-        model_train.initate_data_model_trainer()
+        model_train_artifact=model_train.initate_data_model_trainer()
+        
+        return model_train_artifact
+    
         
         
          
@@ -68,7 +71,12 @@ class TrainPipeline:
             
             data_validation_artifacts=self.start_data_validation(data_ingestion_artifacts)
             
-            self.start_model_trainer()
+            if data_validation_artifacts.validation_status==True: 
+                model_trainer_artifact=self.start_model_trainer()
+            else: 
+                log.info(f"Your data in not in correct format")
+                
+            log.info(f"Model Trainer artifact : {model_trainer_artifact}")
             
         except Exception as e: 
             raise e      
